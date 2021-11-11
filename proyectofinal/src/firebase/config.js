@@ -11,15 +11,15 @@ const firebaseConfig = {
   appId: "1:1039144005784:web:552580a152c0443250a0ed"
 };
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCN-dCTMlgH_m3EAX87d4_DoggZeYOW--k",
-//   authDomain: "ig-jfk.firebaseapp.com",
-//   projectId: "ig-jfk",
-//   storageBucket: "ig-jfk.appspot.com",
-//   messagingSenderId: "276690169291",
-//   appId: "1:276690169291:web:9db83ce7b572dade3bda4e"
-// };
-
+/* const firebaseConfig = {
+   apiKey: "AIzaSyCN-dCTMlgH_m3EAX87d4_DoggZeYOW--k",
+   authDomain: "ig-jfk.firebaseapp.com",
+   projectId: "ig-jfk",
+   storageBucket: "ig-jfk.appspot.com",
+   messagingSenderId: "276690169291",
+   appId: "1:276690169291:web:9db83ce7b572dade3bda4e"
+};
+ */
 
 app.initializeApp(firebaseConfig);
 
