@@ -37,9 +37,7 @@ class NavBar extends Component{
             .then( ()=>{
                 console.log('Registrado');
             })
-            .catch( error => {
-                console.log(error);
-            })
+            .catch( error => console.log(error))
     }
     login(email,pass){
         auth.signInWithEmailAndPassword(email,pass)
@@ -49,7 +47,7 @@ class NavBar extends Component{
                     user:response.user,
                 })
             })
-            .catch(e => console.log(e))
+            .catch(error => console.log(error))
     }
 
     logout(){
@@ -60,7 +58,7 @@ class NavBar extends Component{
                     loggedIn: false,
                 })
             })
-            .catch()
+            .catch(error => console.log(error))
     }
 
     render(){
@@ -75,7 +73,7 @@ class NavBar extends Component{
                 </Drawer.Navigator> :
                 <Drawer.Navigator>
                      <Drawer.Screen name="inicio" component={()=><Inicio />} />
-                     <Drawer.Screen name ="New Post" component={(drawerProps)=><PostForm drawerProps={drawerProps}/>}/>
+                     <Drawer.Screen name ="Nuevo Posteo" component={(drawerProps)=><PostForm drawerProps={drawerProps}/>}/>
                       <Drawer.Screen name="Perfil" component={()=><Perfil userData={this.state.user} logout={()=>this.logout() } />} />
                 </Drawer.Navigator>
             }

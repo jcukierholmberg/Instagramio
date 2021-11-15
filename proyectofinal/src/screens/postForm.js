@@ -24,7 +24,7 @@ class PostForm extends Component{
             //Redirección
             this.props.drawerProps.navigation.navigate('Inicio')
         })
-        .catch()
+        .catch(error => console.log(error))
     }
 
     render(){
