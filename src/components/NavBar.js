@@ -72,7 +72,7 @@ class NavBar extends Component{
                     <Drawer.Screen name="Login" component={()=><Login login={(email, pass)=>this.login(email, pass)} />}/>
                 </Drawer.Navigator> :
                 <Drawer.Navigator>
-                     <Drawer.Screen name="inicio" component={()=><Inicio />} />
+                     <Drawer.Screen name="Inicio" component={()=><Inicio />} />
                      <Drawer.Screen name ="Nuevo Posteo" component={(drawerProps)=><PostForm drawerProps={drawerProps}/>}/>
                       <Drawer.Screen name="Perfil" component={()=><Perfil userData={this.state.user} logout={()=>this.logout() } />} />
                 </Drawer.Navigator>

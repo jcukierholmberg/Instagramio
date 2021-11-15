@@ -64,7 +64,6 @@ class Post extends Component{
     }
 
     guardarComentario(){
-        console.log('Guardadno comentario...');
         let oneComment = {
             createdAt: Date.now(),
             author: auth.currentUser.email,

@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:10,
   },
   formContainer:{
-    backgroundColor: '#ccc',
+    backgroundColor: '#ffffff',
     marginHorizontal: 10,
     padding:10,
   },
