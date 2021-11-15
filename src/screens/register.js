@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity, DatePickerAndroid} from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 class Register extends Component{
     constructor(props){
@@ -14,31 +15,37 @@ class Register extends Component{
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text>Register</Text>
+                <Text style={styles.titulo}> Registro</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
-                    placeholder='email'
+                    placeholder='Email'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({userName: text})}
-                    placeholder='user name'
+                    placeholder='Usuario'
                     keyboardType='default'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
-                    placeholder='password'
+                    placeholder='Contraseña'
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.register(this.state.email, this.state.password)} >
-                    <Text style={styles.textButton}>Registrarse</Text>    
-                </TouchableOpacity>
+                <LinearGradient
+                colors={['#DB0058', '#ED3B83', '#DB0058']}
+                style={styles.button}>
+                        <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password)} >
+                            <Text style={styles.textButton}>Registrarse</Text>    
+                        </TouchableOpacity>
+                </LinearGradient>
+                
             </View>
         )
     }
 }
+
 
 const styles = StyleSheet.create({
     formContainer:{
@@ -50,25 +57,34 @@ const styles = StyleSheet.create({
         paddingVertical:15,
         paddingHorizontal: 10,
         borderWidth:1,
-        borderColor: '#ccc',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
+        backgroundColor: "#8E003940",
     },
+    
     button:{
         backgroundImage:'linear-gradient (red, yellow)',
         paddingHorizontal: 10,
-        paddingVertical: 6,
+        paddingVertical: 10,
         textAlign: 'center',
         borderRadius:4, 
         borderWidth:1,
         borderStyle: 'solid',
-        borderColor: '#35D699'
+        borderColor: 'white',
+        marginTop: 20,
     },
     textButton:{
-        color: '#fff'
+        fontWeight: 'bold',
+        color:'white',
+        textAlign: 'center',
+        fontSize: 16,
+    },
+    titulo:{
+        fontWeight: 'bold',
+        color:'black',
+        fontSize: 16,
     }
-
 })
 
 export default Register;

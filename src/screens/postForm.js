@@ -38,9 +38,16 @@ class PostForm extends Component{
                     multiline
                     value={this.state.textoPost}    
                     />
-                <TouchableOpacity style={styles.button} onPress={()=>this.submitPost()}>
-                    <Text style={styles.textButton}>Guardar</Text>    
-                </TouchableOpacity>
+
+
+                <LinearGradient
+                colors={['#DB0058', '#ED3B83', '#DB0058']}
+                style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={()=>this.submitPost()}>
+                        <Text style={styles.textButton}>Guardar</Text>    
+                    </TouchableOpacity>
+                </LinearGradient>
+                
             </View>
         )
     }

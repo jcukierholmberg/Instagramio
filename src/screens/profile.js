@@ -11,9 +11,12 @@ class Profile extends Component{
   render(){
     return(
       <View style={styles.container}>
-          <Text style={styles.welcome}> Bienvenido: {this.props.userData.email}</Text>
+          <Text style={styles.welcome}> Bienvenido  {this.props.userData.email}</Text>
+          <Text style={styles.welcome}>{this.props.userData.email}</Text>
+          {/* <Text style={styles.welcome}> Posteos:  {this.props.posts.length}</Text> */}
+
           <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
-          <Text style={styles.element}> Último login: {this.props.userData.metadata.lastSignInTime}</Text>
+          <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
             <Text style={styles.touchableText}>Cerrar sesión</Text>
           </TouchableOpacity>         

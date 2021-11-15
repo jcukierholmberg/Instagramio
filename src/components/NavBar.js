@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator} from '@react-navigation/drawer';
 
@@ -64,12 +66,12 @@ class NavBar extends Component{
     render(){
         return(
             
-            <NavigationContainer>
+            <NavigationContainer style={styles.topmenu}>
             {this.state.loggedIn == false ?
                 <Drawer.Navigator>
                     <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} />} />
                    
-                    <Drawer.Screen name="Login" component={()=><Login login={(email, pass)=>this.login(email, pass)} />}/>
+                    <Drawer.Screen name="Iniciar sesión" component={()=><Login login={(email, pass)=>this.login(email, pass)} />}/>
                 </Drawer.Navigator> :
                 <Drawer.Navigator>
                      <Drawer.Screen name="Inicio" component={()=><Inicio />} />
@@ -83,4 +85,10 @@ class NavBar extends Component{
 
 }
 
-export default NavBar
+const styles = StyleSheet.create({
+    topmenu:{
+        backgroundColor: "#00B74A"
+    }
+})
+
+export default NavBar;
