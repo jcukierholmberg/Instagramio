@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import { auth } from '../firebase/config';
+import { db, auth } from '../firebase/config';
+import firebase from 'firebase';
+import Post from '../components/Post'
 
 class Profile extends Component{
   constructor(props){
@@ -11,7 +13,7 @@ class Profile extends Component{
   }
   componentDidMount(){
     
-    db.collection('posts').where("owner","==","flor@aguirre.com").onSnapshot(
+    db.collection('posts').where("owner","==",auth.currentUser.email).onSnapshot(
       docs => {
         //Array para crear datos en formato más útil.
         let posts = [];
@@ -24,7 +26,8 @@ class Profile extends Component{
 
         this.setState({
           posteos: posts,
-        })
+        }, 
+         ( )=> console.log(this.state.posteos))
 
       }
     )
