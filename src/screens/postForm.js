@@ -2,12 +2,15 @@ import { NavigationRouteContext } from "@react-navigation/native";
 import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from '../firebase/config'
+import MyCamera from "../components/MyCamera";
 
 class PostForm extends Component{
     constructor(props){
         super(props)
         this.state={
             textoPost:'',
+            mostrarCamara:true,
+            url:''
         }
     }
     submitPost(){
@@ -16,6 +19,7 @@ class PostForm extends Component{
             owner: auth.currentUser.email,
             texto: this.state.textoPost,
             createdAt: Date.now(),
+            photo: this.state.url,
         })
         .then( ()=>{ //Limpiar el form de carga
             this.setState({
@@ -27,13 +31,25 @@ class PostForm extends Component{
         .catch(error => console.log(error))
     }
 
+    subirImagen(url){
+        this.setState({
+            mostrarCamara: false,
+            url: url
+        })
+    }
+
     render(){
         return(
-            <View style={styles.formContainer}>
+            <View style={styles.container}>
+                {
+                    this.state.mostrarCamara ?
+                    <MyCamera subirImagen={(url)=>{this.subirImagen(url)}}/>:
+
+                    <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Escribí aquí'
+                    placeholder='Deja tu comentario aca!'
                     keyboardType='default'
                     multiline
                     value={this.state.textoPost}    
@@ -49,11 +65,17 @@ class PostForm extends Component{
                 </LinearGradient>
                 
             </View>
+                }
+            </View>
+            
         )
     }
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flex:1,
+    },
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
