@@ -3,13 +3,14 @@ import React, {Component} from "react";
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 import { auth, db } from '../firebase/config'
 import MyCamera from "../components/MyCamera";
+import { LinearGradient } from 'expo-linear-gradient';
 
 class PostForm extends Component{
     constructor(props){
         super(props)
         this.state={
             textoPost:'',
-            mostrarCamara:true,
+            showCamera:true,
             url:''
         }
     }
@@ -31,9 +32,9 @@ class PostForm extends Component{
         .catch(error => console.log(error))
     }
 
-    subirImagen(url){
+    onImageUpload(url){
         this.setState({
-            mostrarCamara: false,
+            showCamera: false,
             url: url
         })
     }
@@ -42,8 +43,8 @@ class PostForm extends Component{
         return(
             <View style={styles.container}>
                 {
-                    this.state.mostrarCamara ?
-                    <MyCamera subirImagen={(url)=>{this.subirImagen(url)}}/>:
+                    this.state.showCamera ?
+                    <MyCamera onImageUpload={(url)=>{this.onImageUpload(url)}}/>:
 
                     <View style={styles.formContainer}>
                 <TextInput

@@ -9,7 +9,7 @@ class MyCamera extends Component{
         this.state = {
             permission: false, //Permisos de la cámara en el dispositivo
             photo: '', //Guardar la url/ uri de la foto.
-            mostrarCamara: true,
+            showCamera: true,
         }
         this.camera //la referencia a esta cámara.
     }
@@ -22,6 +22,9 @@ class MyCamera extends Component{
                 })
             })
             .catch( error => console.log(error))
+        //Investigar
+       // console.log(Camera);
+       // console.log(this.camera);
     }
 
     takePicture(){
@@ -29,14 +32,14 @@ class MyCamera extends Component{
             .then((photo)=>{
                 this.setState({
                     photo: photo.uri, //La ruta interna temporal a la foto.
-                    mostrarCamara:false
+                    showCamera:false
                 })
 
             })
             .catch( error => console.log(error))
     }
 
-    guardar(){
+    savePhoto(){
         //Tiene que buscar la foto de la uri temporal y subirla al storage.
         fetch(this.state.photo)
             .then( res => res.blob())
@@ -48,7 +51,7 @@ class MyCamera extends Component{
                     .then(()=>{
                         ref.getDownloadURL()
                             .then( url => {
-                                this.props.subirImagen(url);
+                                this.props.onImageUpload(url);
                                 this.setState({
                                     photo:'',
                                 })
@@ -80,7 +83,7 @@ class MyCamera extends Component{
                             source={{uri:this.state.photo}}
                         /> 
                         <View>
-                            <TouchableOpacity onPress={()=>this.guardar()}>
+                            <TouchableOpacity onPress={()=>this.savePhoto()}>
                                 <Text>Aceptar</Text>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={()=>this.clear()}>
