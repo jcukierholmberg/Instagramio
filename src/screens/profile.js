@@ -11,7 +11,7 @@ class Profile extends Component{
   render(){
     return(
       <View style={styles.container}>
-          <Text style={styles.welcome}> Bienvenido  {this.props.userData.email}</Text>
+          <Text style={styles.welcome}> Bienvenido  {this.props.userData.username}</Text>
           <Text style={styles.welcome}>{this.props.userData.email}</Text>
           {/* <Text style={styles.welcome}> Posteos:  {this.props.posts.length}</Text> */}
 
