@@ -7,7 +7,7 @@ class Register extends Component{
         super(props)
         this.state={
             email:'',
-            userName:'',
+            username:'',
             password:'',
         }
     }
@@ -23,9 +23,9 @@ class Register extends Component{
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
-                    onChangeText={(text)=>this.setState({userName: text})}
+                    onChangeText={(text)=>this.setState({username: text})}
                     placeholder='Usuario'
-                    keyboardType='default'/>
+                    keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
@@ -36,7 +36,7 @@ class Register extends Component{
                 <LinearGradient
                 colors={['#DB0058', '#ED3B83', '#DB0058']}
                 style={styles.button}>
-                        <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password)} >
+                        <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} >
                             <Text style={styles.textButton}>Registrarse</Text>    
                         </TouchableOpacity>
                 </LinearGradient>
