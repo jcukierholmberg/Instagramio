@@ -1,12 +1,34 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
+import { auth } from '../firebase/config';
 
 class Profile extends Component{
   constructor(props){
     super(props);
     this.state ={
-      
+      posteos: [],
     }
+  }
+  componentDidMount(){
+    
+    db.collection('posts').where("owner","==","flor@aguirre.com").onSnapshot(
+      docs => {
+        //Array para crear datos en formato más útil.
+        let posts = [];
+        docs.forEach( doc => {
+          posts.push({
+            id: doc.id,   
+            data: doc.data(),
+          })
+        })
+
+        this.setState({
+          posteos: posts,
+        })
+
+      }
+    )
+
   }
   render(){
     return(
@@ -17,6 +39,15 @@ class Profile extends Component{
 
           <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
+
+        <View style={styles.container}>
+          <FlatList 
+            data= { this.state.posteos }
+            keyExtractor = { post => post.id}
+            renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
+          />
+        </View>
+
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
             <Text style={styles.touchableText}>Cerrar sesión</Text>
           </TouchableOpacity>         
