@@ -4,6 +4,7 @@ import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faComment, faShare, faTimes} from "@fortawesome/free-solid-svg-icons"
+import {faHeart} from "@fortawesome/free-regular-svg-icons"
 
 class Post extends Component{
     constructor(props){
@@ -91,19 +92,21 @@ class Post extends Component{
             <Image 
             style={{height: 230, marginTop: 17, borderRadius:4}}
             source={{uri: this.props.postData.data.photo}} />
-            <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
-            <Text style={styles.likes}>{this.state.likes} </Text>
-               
             {
                 this.state.myLike == false ?
                 
                 <TouchableOpacity onPress={()=>this.darLike()}>
-                    <FontAwesomeIcon icon={faHeart} style={{color:"black", fontSize: 24}}/>
+                    <FontAwesomeIcon icon={['fas', 'heart']} style={{color:"black", fontSize: 24}}/>
                 </TouchableOpacity>  :
                 <TouchableOpacity onPress={()=>this.quitarLike()}>
                     <FontAwesomeIcon icon={faHeart} style={{color:"red", fontSize: 24}}/>
                 </TouchableOpacity>                       
             }
+            <Text style={styles.likes}>{this.state.likes} </Text>
+            <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
+            
+               
+            
             {/* Ver modal */}
             <TouchableOpacity onPress={()=>this.showModal()}>
             <FontAwesomeIcon icon={faComment} style={{fontSize: 24}}/>
@@ -117,7 +120,7 @@ class Post extends Component{
                     transparent={false}
                 >   
                     <TouchableOpacity onPress={()=>this.hideModal()}>
-                    <FontAwesomeIcon icon={faTimes} style={{fontSize: 18}}/>
+                    <Text>Mostrar comentarios del posteo</Text>
                     </TouchableOpacity> 
                    
 
