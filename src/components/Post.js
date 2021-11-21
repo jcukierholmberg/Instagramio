@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
+import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHeart, faComment, faShare} from "@fortawesome/free-solid-svg-icons"
 
 class Post extends Component{
     constructor(props){
@@ -85,26 +87,28 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.contanier}>
+            <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
             <Image 
-            style={{height: 10}}
+            style={{height: 230, marginTop: 17}}
             source={{uri: this.props.postData.data.photo}} />
-             <Text>Texto del post: {this.props.postData.data.texto}</Text>
-             <Text>user: {this.props.postData.data.owner} </Text>  
-             <Text>Likes: {this.state.likes} </Text>
+             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
+               
+             <Text style={styles.likes}>{this.state.likes} </Text>
                
              {/* Cambio de botones me gusta/ me dejó de gustar */}
             {
                 this.state.myLike == false ?
+                
                 <TouchableOpacity onPress={()=>this.darLike()}>
-                    <Text>Me gusta</Text>
-                </TouchableOpacity> :
+                    <FontAwesomeIcon icon={faHeart} style={{color:"black", fontSize: 24}}/>
+                </TouchableOpacity>  :
                 <TouchableOpacity onPress={()=>this.quitarLike()}>
-                    <Text>Quitar like</Text>
+                    <FontAwesomeIcon icon={faHeart} style={{color:"red", fontSize: 24}}/>
                 </TouchableOpacity>                       
             }
             {/* Ver modal */}
             <TouchableOpacity onPress={()=>this.showModal()}>
-                <Text>Ver Comentarios</Text>
+            <FontAwesomeIcon icon={faComment} style={{fontSize: 24}}/>
             </TouchableOpacity>
 
             {/* Modal para comentarios */}
@@ -117,18 +121,18 @@ class Post extends Component{
                     <TouchableOpacity onPress={()=>this.hideModal()}>
                         <Text>X</Text>
                     </TouchableOpacity> 
-                    <Text>Dentro del modal</Text>
+                   
 
                     {/* Formulario para nuevo comentarios */}
                     <View>
-                        <TextInput placeholder="Comentar..."
+                        <TextInput placeholder="Deja tu comentario!"
                             keyboardType="default"
                             multiline
                             onChangeText={text => this.setState({comment: text})}
                             value={this.state.comment}
                         />
                         <TouchableOpacity onPress={()=>{this.guardarComentario()}}>
-                            <Text>Guadar comentario</Text>
+                        <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/>
                         </TouchableOpacity>
                     </View>
 
@@ -151,6 +155,12 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         borderWidth: 1,
         padding: 10,
+    },
+    likes:{
+        color: "red",
+    },
+    caption:{
+        fontWeight: "bold",
     }
 })
 
