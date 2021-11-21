@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet, Image, TextInput, TouchableOpacityBase} from 'react-native';
 import {Camera} from 'expo-camera';
 import {db, storage} from '../firebase/config';
+import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCamera} from "@fortawesome/free-solid-svg-icons"
 
 class MyCamera extends Component{
     constructor(props){
@@ -100,7 +102,7 @@ class MyCamera extends Component{
                             ref={ reference => this.camera = reference }
                         />
                         <TouchableOpacity style={styles.button} onPress={()=>this.takePicture()}>
-                            <Text>Sacar Foto</Text>
+                        <FontAwesomeIcon icon={faCamera} style={{fontSize: 24}}/>
                         </TouchableOpacity>
                     </View> 
                 :

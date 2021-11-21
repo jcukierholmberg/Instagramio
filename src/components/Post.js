@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image} from 
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart, faComment, faShare} from "@fortawesome/free-solid-svg-icons"
+import {faHeart, faComment, faShare, faTimes} from "@fortawesome/free-solid-svg-icons"
 
 class Post extends Component{
     constructor(props){
@@ -89,13 +89,11 @@ class Post extends Component{
             <View style={styles.contanier}>
             <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
             <Image 
-            style={{height: 230, marginTop: 17}}
+            style={{height: 230, marginTop: 17, borderRadius:4}}
             source={{uri: this.props.postData.data.photo}} />
-             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
+            <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
+            <Text style={styles.likes}>{this.state.likes} </Text>
                
-             <Text style={styles.likes}>{this.state.likes} </Text>
-               
-             {/* Cambio de botones me gusta/ me dejó de gustar */}
             {
                 this.state.myLike == false ?
                 
@@ -119,7 +117,7 @@ class Post extends Component{
                     transparent={false}
                 >   
                     <TouchableOpacity onPress={()=>this.hideModal()}>
-                        <Text>X</Text>
+                    <FontAwesomeIcon icon={faTimes} style={{fontSize: 18}}/>
                     </TouchableOpacity> 
                    
 
@@ -155,6 +153,7 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         borderWidth: 1,
         padding: 10,
+        
     },
     likes:{
         color: "red",

@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
 import { db, auth } from '../firebase/config';
 import Post from '../components/Post';
+import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faShare, } from "@fortawesome/free-solid-svg-icons"
 
 
 class Buscador extends Component{
@@ -41,7 +43,7 @@ class Buscador extends Component{
     return(
       <View style={styles.container}>
         <TextInput keyboardType='email-address' placeholder='Buscar..' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
-        <TouchableOpacity onPress={()=> this.filtro()}> <Text> Buscar Usuario </Text> </TouchableOpacity>
+        <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
         <FlatList 
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
@@ -55,6 +57,7 @@ class Buscador extends Component{
 const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
+    backgroundColor: "D0006E",
   },
   formContainer:{
     backgroundColor: '#ffffff',
