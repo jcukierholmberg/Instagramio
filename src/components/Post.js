@@ -127,7 +127,11 @@ class Post extends Component{
                     <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24}}/>
                     </TouchableOpacity> 
                    
-
+                    <FlatList 
+                    data={this.props.postData.data}
+                    keyExtractor={item => item.owner}
+                    renderItem = { ({item}) => <Text>{item.comments}</Text> }
+                    />
                     {/* Formulario para nuevo comentarios */}
                     <View>
                         <TextInput placeholder="Deja tu comentario!"
