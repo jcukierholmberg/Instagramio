@@ -42,7 +42,7 @@ class Buscador extends Component{
   render(){
     return(
       <View style={styles.container}>
-        <TextInput keyboardType='email-address' placeholder='Buscar..' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
+        <TextInput keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
         <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
         <FlatList 
           data= { this.state.posteos }

@@ -23,7 +23,7 @@ class NavBar extends Component{
             user:''
         }
     }
-    
+    // hago un componentDidMount para que sepa que hay un usuario logueado y no este cargando todo el tiempo
     componentDidMount(){
         auth.onAuthStateChanged(user => {
             if(user){
@@ -34,6 +34,7 @@ class NavBar extends Component{
             }
         })
     }
+            // ¿Por que tengo las funciones aca? NavBar es el componente padre, le pasa la info por props la funcion a cada componente hijo - drawer es quien deberia saber como manejar las funciones ya que es el que mueve todo de un lado a otro
 
     register(email, pass){
         auth.createUserWithEmailAndPassword(email, pass)
@@ -44,10 +45,10 @@ class NavBar extends Component{
     }
     login(email,pass){
         auth.signInWithEmailAndPassword(email,pass)
-            .then( response => {
+            .then( userInfo => {
                 this.setState({
                     loggedIn: true,
-                    user:response.user,
+                    user: userInfo.user,
                 })
             })
             .catch(error => console.log(error))
@@ -66,7 +67,6 @@ class NavBar extends Component{
 
     render(){
         return(
-            
             <NavigationContainer style={styles.topmenu}>
             {this.state.loggedIn == false ?
                 <Drawer.Navigator>

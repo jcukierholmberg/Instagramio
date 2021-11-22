@@ -15,7 +15,7 @@ class Profile extends Component{
     
     db.collection('posts').where("owner","==",auth.currentUser.email).onSnapshot(
       docs => {
-        //Array para crear datos en formato más útil.
+        //Armo un array vacio asi guardo solo la info que me sirve - esa info me la da data()
         let posts = [];
         docs.forEach( doc => {
           posts.push({

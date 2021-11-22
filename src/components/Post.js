@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image, FlatList} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -130,7 +130,7 @@ class Post extends Component{
                     <FlatList 
                     data={this.props.postData.data}
                     keyExtractor={item => item.owner}
-                    renderItem = { ({item}) => <Text>{item.comments}</Text> }
+                    renderItem = { ({item}) => <Text>{item.comment}</Text> }
                     />
                     {/* Formulario para nuevo comentarios */}
                     <View>
