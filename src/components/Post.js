@@ -91,7 +91,8 @@ class Post extends Component{
             <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
             <Image 
             style={{height: 230, marginTop: 17, marginBottom: 15, borderRadius:4}}
-            source={{uri: this.props.postData.data.photo}} />
+            source={{uri: this.props.postData.data.photo}} 
+            resizeMode= 'contain'/>
             {
                 this.state.myLike == false ?
                 

@@ -83,7 +83,8 @@ class MyCamera extends Component{
                         <Image 
                             style={styles.cameraBody}
                             source={{uri:this.state.photo}}
-                        /> 
+                            resizeMode= 'contain'
+                        />
                         <View>
                             <TouchableOpacity onPress={()=>this.savePhoto()}>
                                 <Text>Aceptar</Text>
