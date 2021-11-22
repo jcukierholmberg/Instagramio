@@ -15,7 +15,7 @@ class Register extends Component{
     render(){
         return(
             <View style={styles.formContainer}>
-                <Text style={styles.titulo}> Registro</Text>
+                <Text style={styles.titulo}> Crea tu usuario</Text>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
@@ -49,18 +49,16 @@ class Register extends Component{
 
 const styles = StyleSheet.create({
     formContainer:{
-        paddingHorizontal:10,
-        marginTop: 20,
+        backgroundColor: "#D0006E",
+        paddingBottom: 6000,
     },
     input:{
         height:20,
         paddingVertical:15,
         paddingHorizontal: 10,
-        borderWidth:1,
-        borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
-        backgroundColor: "#8E003940",
+        backgroundColor: "white",
     },
     
     button:{
@@ -82,8 +80,9 @@ const styles = StyleSheet.create({
     },
     titulo:{
         fontWeight: 'bold',
-        color:'black',
-        fontSize: 16,
+        color:'white',
+        fontSize: 20,
+        marginTop:5,
     }
 })
 

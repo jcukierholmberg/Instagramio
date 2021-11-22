@@ -33,7 +33,7 @@ class Inicio extends Component{
 
   render(){
     return(
-      <View style={{ backgroundColor: '#FFFFFF'}}>
+      <View style={styles.container}>
         <FlatList 
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
@@ -47,7 +47,8 @@ class Inicio extends Component{
 const styles = StyleSheet.create({
   container:{
     paddingHorizontal:10,
-    backgroundColor: "D0006E",
+    backgroundColor: "#D0006E",
+    marginBottom:600,
   },
   /* formContainer:{
     backgroundColor: '#ffffff',

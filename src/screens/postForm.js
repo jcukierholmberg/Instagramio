@@ -80,16 +80,16 @@ const styles = StyleSheet.create({
     formContainer:{
         paddingHorizontal:10,
         marginTop: 20,
+        backgroundColor: "#D0006E",
     },
     input:{
         height:100,
         paddingVertical:15,
         paddingHorizontal: 10,
-        borderWidth:1,
-        borderColor: '#ccc',
         borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
+        backgroundColor: "white",
     },
     button:{
         backgroundColor:'#28a745',

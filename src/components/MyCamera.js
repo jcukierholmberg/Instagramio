@@ -121,9 +121,12 @@ class MyCamera extends Component{
 const styles=StyleSheet.create({
     container:{
         flex:1,
+        backgroundColor: "#D0006E",
     },
     cameraBody:{
         flex:7,
+        margin:15,
+        borderRadius: 6,
     },
     button:{
         flex:1,

@@ -61,8 +61,7 @@ class Profile extends Component{
 
 const styles = StyleSheet.create({
     container:{
-        marginTop: 20,
-        marginHorizontal:10
+        backgroundColor: "#D0006E",
     },
     welcome:{
         fontSize:18,

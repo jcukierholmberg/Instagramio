@@ -4,7 +4,7 @@ import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart, faComment, faShare, faTimes} from "@fortawesome/free-solid-svg-icons"
-import {faHeart} from "@fortawesome/free-regular-svg-icons"
+
 
 class Post extends Component{
     constructor(props){
@@ -87,29 +87,32 @@ class Post extends Component{
 
     render(){
         return(
-            <View style={styles.contanier}>
+            <View style={styles.container}>
             <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
             <Image 
-            style={{height: 230, marginTop: 17, borderRadius:4}}
+            style={{height: 230, marginTop: 17, marginBottom: 15, borderRadius:4}}
             source={{uri: this.props.postData.data.photo}} />
             {
                 this.state.myLike == false ?
                 
                 <TouchableOpacity onPress={()=>this.darLike()}>
-                    <FontAwesomeIcon icon={['fas', 'heart']} style={{color:"black", fontSize: 24}}/>
+                    <FontAwesomeIcon icon={faHeart} style={{color:"black", fontSize: 24}}/>
                 </TouchableOpacity>  :
                 <TouchableOpacity onPress={()=>this.quitarLike()}>
                     <FontAwesomeIcon icon={faHeart} style={{color:"red", fontSize: 24}}/>
                 </TouchableOpacity>                       
             }
-            <Text style={styles.likes}>{this.state.likes} </Text>
+
+            <FontAwesomeIcon icon={faComment} style={{color:"black", fontSize: 24}}/>
+
+            <Text>{this.state.likes} personas likearon el posteo </Text>
             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
             
                
             
             {/* Ver modal */}
             <TouchableOpacity onPress={()=>this.showModal()}>
-            <FontAwesomeIcon icon={faComment} style={{fontSize: 24}}/>
+            <Text>Mostrar comentarios del posteo</Text>
             </TouchableOpacity>
 
             {/* Modal para comentarios */}
@@ -120,7 +123,7 @@ class Post extends Component{
                     transparent={false}
                 >   
                     <TouchableOpacity onPress={()=>this.hideModal()}>
-                    <Text>Mostrar comentarios del posteo</Text>
+                    <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24}}/>
                     </TouchableOpacity> 
                    
 
@@ -150,16 +153,13 @@ class Post extends Component{
 
 
 const styles = StyleSheet.create({
-    contanier:{
+    container:{
+        marginTop: 20,
         marginBottom: 20,
         borderRadius:4,
-        borderColor: "#ccc",
-        borderWidth: 1,
         padding: 10,
+        backgroundColor: "white"
         
-    },
-    likes:{
-        color: "red",
     },
     caption:{
         fontWeight: "bold",
