@@ -56,7 +56,7 @@ class NavBar extends Component{
 
     logout(){
         auth.signOut()
-            .then( (res)=>{
+            .then( ()=>{
                 this.setState({
                     user:'',
                     loggedIn: false,
