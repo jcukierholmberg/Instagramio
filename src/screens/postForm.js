@@ -26,7 +26,7 @@ class PostForm extends Component{
                 textoPost:'',
             })
             //Redirección
-            this.props.drawerProps.navigation.navigate('Inicio')
+            this.props.drawerProps.navigation.navigate('Instagramio')
         })
         .catch(error => console.log(error))
     }

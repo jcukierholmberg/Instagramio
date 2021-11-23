@@ -34,8 +34,7 @@ class Post extends Component{
         })
         .then(()=>{
             this.setState({
-                likes:this.props.postData.data.likes.length,
-                //likes:this.state.likes + 1, //Opción más rápida de respuesta
+                likes:this.state.likes + 1,
                 myLike: true,
             })
         })
@@ -106,7 +105,7 @@ class Post extends Component{
 
             <FontAwesomeIcon icon={faComment} style={{color:"black", fontSize: 24}}/>
 
-            <Text>{this.state.likes} personas likearon el posteo </Text>
+            <Text>{this.state.likes} Me gusta </Text>
             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
             
                

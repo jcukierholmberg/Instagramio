@@ -32,6 +32,8 @@ class NavBar extends Component{
                     user: user,
                 })
             }
+            console.log(user)
+
         })
     }
             // ¿Por que tengo las funciones aca? NavBar es el componente padre, le pasa la info por props la funcion a cada componente hijo - drawer es quien deberia saber como manejar las funciones ya que es el que mueve todo de un lado a otro

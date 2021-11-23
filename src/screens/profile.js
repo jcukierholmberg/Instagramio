@@ -39,7 +39,7 @@ class Profile extends Component{
           <Text style={styles.welcome}> Bienvenido  {this.props.userData.username}</Text>
           <Text style={styles.welcome}>{this.props.userData.email}</Text>
           {/* <Text style={styles.welcome}> Posteos:  {this.props.posts.length}</Text> */}
-
+          <Text>{this.state.posteos.length} posteos</Text>
           <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
 
