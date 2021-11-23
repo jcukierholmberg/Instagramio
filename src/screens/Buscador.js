@@ -11,7 +11,8 @@ class Buscador extends Component{
     super(props);
     this.state ={
       posteos: [],
-      resultadoBusqueda: ''
+      resultadoBusqueda: '',
+      aviso: 'Filtra los posteos por usuario'
     }
   }
   componentDidMount(){
@@ -32,6 +33,7 @@ class Buscador extends Component{
   
           this.setState({
             posteos: posts,
+            aviso: ''
           }, 
            ( )=> console.log(this.state.posteos))
   
@@ -42,13 +44,17 @@ class Buscador extends Component{
   render(){
     return(
       <View style={styles.container}>
+        {/* <Text>{this.state.aviso}</Text> */}
         <TextInput keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
         <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
+        {  this.state.posteos.length === 0?
+          <Text>El usuario no existe o aún no tiene publicaciones</Text> :
         <FlatList 
         data= { this.state.posteos }
         keyExtractor = { post => post.id}
         renderItem = { ({item}) => <Post postData={item} />}
         /> 
+      }
       </View>
       )
   }

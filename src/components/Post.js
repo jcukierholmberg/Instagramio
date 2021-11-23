@@ -15,6 +15,7 @@ class Post extends Component{
            showModal: false, //Para la vista del modal
            comment:'', //para limpiar el campo después de enviar.
         }
+        console.log(this.props.postData)
     }
     componentDidMount(){
         if(this.props.postData.data.likes){
@@ -84,10 +85,22 @@ class Post extends Component{
         //limpiar el estado
     }
 
+    borrarPost(){
+        db.collection('posts').doc(this.props.postData.id).delete()
+            .then(() => {
+                console.log('Posteo borrado')
+            })
+            .catch(error => console.log(error))
+    }
+
     render(){
         return(
             <View style={styles.container}>
             <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
+            { auth.currentUser.email === this.props.postData.data.owner ?
+                <TouchableOpacity onPress={()=>this.borrarPost()}>B</TouchableOpacity> :
+                ""
+            }
             <Image 
             style={{height: 230, marginTop: 17, marginBottom: 15, borderRadius:4}}
             source={{uri: this.props.postData.data.photo}} 
