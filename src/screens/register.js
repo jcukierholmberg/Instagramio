@@ -8,8 +8,12 @@ class Register extends Component{
         this.state={
             email:'',
             username:'',
-            password:'',
+            password:'', 
         }
+    }
+
+    disabled(){
+         {this.state.email && this.state.password && this.state.username ? document.getElementById("submitbutton").disabled = false : document.getElementById("submitbutton").disabled = true;}
     }
     
     render(){
@@ -33,16 +37,23 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                { this.state.email == '' || this.state.password == '' || this.state.username == ''?
+                {/* { this.state.email == '' || this.state.password == '' || this.state.username == ''?
                     <Text></Text> :
                     <LinearGradient
-                colors={['#DB0058', '#ED3B83', '#DB0058']}
-                style={styles.button}>
-                        <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} >
-                            <Text style={styles.textButton}>Registrarse</Text>    
-                        </TouchableOpacity>
-                </LinearGradient>
-                }
+                    colors={['#DB0058', '#ED3B83', '#DB0058']}
+                    style={styles.button}>
+                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} >
+                                <Text style={styles.textButton}>Registrarse</Text>    
+                            </TouchableOpacity>
+                    </LinearGradient>
+                } */}
+                <LinearGradient
+                    colors={['#DB0058', '#ED3B83', '#DB0058']}
+                    style={styles.button}>
+                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton" disabled>
+                                <Text style={styles.textButton}>Registrarse</Text>    
+                            </TouchableOpacity>
+                    </LinearGradient>
                 <Text>{this.props.error}</Text>
             </View>
         )
