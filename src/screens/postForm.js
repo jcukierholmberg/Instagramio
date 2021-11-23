@@ -45,26 +45,24 @@ class PostForm extends Component{
                     this.state.showCamera ?
                     <MyCamera onImageUpload={(url)=>{this.onImageUpload(url)}}/>:
 
-                    <View style={styles.formContainer}>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={(text)=>this.setState({textoPost: text})}
-                    placeholder='Deja tu comentario aca!'
-                    keyboardType='default'
-                    multiline
-                    value={this.state.textoPost}    
-                    />
+                <View style={styles.formContainer}>
+                        <TextInput
+                            style={styles.input}
+                            onChangeText={(text)=>this.setState({textoPost: text})}
+                            placeholder='Deja tu comentario aca!'
+                            keyboardType='default'
+                            multiline
+                            value={this.state.textoPost}    
+                            />
 
-
-                <LinearGradient
-                colors={['#DB0058', '#ED3B83', '#DB0058']}
-                style={styles.button}>
-                    <TouchableOpacity style={styles.button} onPress={()=>this.submitPost()}>
-                        <Text style={styles.textButton}>Guardar</Text>    
-                    </TouchableOpacity>
-                </LinearGradient>
-                
-            </View>
+                        <LinearGradient
+                        colors={['#00C618', '#98ED00', '#00C618']}
+                        style={styles.button}>
+                            <TouchableOpacity onPress={()=>this.submitPost()}>
+                                <Text style={styles.textButton}>P U B L I C A R</Text>    
+                            </TouchableOpacity>
+                        </LinearGradient>
+                </View>
                 }
             </View>
             
@@ -75,6 +73,7 @@ class PostForm extends Component{
 const styles = StyleSheet.create({
     container:{
         flex:1,
+        backgroundColor: "#D0006E",
     },
     formContainer:{
         paddingHorizontal:10,
@@ -85,24 +84,31 @@ const styles = StyleSheet.create({
         height:100,
         paddingVertical:15,
         paddingHorizontal: 10,
-        borderStyle: 'solid',
         borderRadius: 6,
         marginVertical:10,
         backgroundColor: "white",
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     },
     button:{
-        backgroundColor:'#28a745',
         paddingHorizontal: 10,
-        paddingVertical: 6,
+        paddingVertical: 10,
         textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: '#28a745'
+        borderRadius:6, 
+        marginTop: 20,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
     },
     textButton:{
-        color: '#fff'
-    }
+        fontWeight: 'thin',
+        color:'white',
+        textAlign: 'center',
+        fontSize: 16,
+    },
 
 })
 
