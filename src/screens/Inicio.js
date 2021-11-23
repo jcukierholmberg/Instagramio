@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput, ScrollView} from 'react-native';
 import { db, auth } from '../firebase/config';
 import Post from '../components/Post';
 
@@ -34,11 +34,13 @@ class Inicio extends Component{
   render(){
     return(
       <View style={styles.container}>
-        <FlatList 
-          data= { this.state.posteos }
-          keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
-        />
+        <ScrollView>
+          <FlatList 
+            data= { this.state.posteos }
+            keyExtractor = { post => post.id}
+            renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
+          />
+        </ScrollView>
       </View>
       )
   }
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:10,
     backgroundColor: "#D0006E",
     marginBottom:600,
-  },
+  }
   /* formContainer:{
     backgroundColor: '#ffffff',
     marginHorizontal: 10,
