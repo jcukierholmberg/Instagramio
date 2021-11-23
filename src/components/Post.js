@@ -127,9 +127,9 @@ class Post extends Component{
                     </TouchableOpacity> 
                    { this.props.postData.data.comments ?
                         <FlatList 
-                        data={this.props.postData.data}
-                        keyExtractor={item => item.owner}
-                        renderItem = { ({item}) => <Text>{item.comments}</Text> }
+                        data={this.props.postData.data.comments}
+                        keyExtractor={item => item.createdAt}
+                        renderItem = { ({item}) => <Text>{item.comment}</Text> }
                         /> :
                         <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
                 }
@@ -142,9 +142,12 @@ class Post extends Component{
                             onChangeText={text => this.setState({comment: text})}
                             value={this.state.comment}
                         />
+                        { this.state.comment == ''?
+                        <Text></Text> :
                         <TouchableOpacity onPress={()=>{this.guardarComentario()}}>
                         <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/>
                         </TouchableOpacity>
+                    }
                     </View>
 
                 </Modal>    :
