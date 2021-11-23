@@ -120,7 +120,7 @@ class MyCamera extends Component{
                     </View> 
                 :
                 //render mensaje
-                <Text>No tienes permisos para usar la cámara</Text>
+                <Text style={styles.text}>No tienes permisos para usar la cámara</Text>
 
             }
             </View>
@@ -152,6 +152,9 @@ const styles=StyleSheet.create({
             shadowOpacity: 0.3,
             shadowRadius: 3,
             margin:15,
+    },
+    text:{
+        color:"white",
     }
 })
 export default MyCamera;

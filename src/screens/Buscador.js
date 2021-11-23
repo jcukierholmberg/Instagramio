@@ -3,7 +3,7 @@ import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, Flat
 import { db, auth } from '../firebase/config';
 import Post from '../components/Post';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faShare, } from "@fortawesome/free-solid-svg-icons"
+import {faSearch } from "@fortawesome/free-solid-svg-icons"
 
 
 class Buscador extends Component{
@@ -45,7 +45,7 @@ class Buscador extends Component{
     return(
       <View style={styles.container}>
           <TextInput style={styles.input} keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
-          <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
+          <TouchableOpacity style={styles.text} onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faSearch} style={{fontSize: 24}}/> </TouchableOpacity>
          
          {
           
@@ -54,7 +54,7 @@ class Buscador extends Component{
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
           renderItem = { ({item}) => <Post postData={item} />} /> :
-          <Text> No hay usuario </Text> 
+          <Text style={styles.text}> No hay usuario </Text> 
           
          }
         
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     paddingBottom:600,
     paddingHorizontal:10,
     backgroundColor: "#D0006E",
+    alignItems:"center",
   },
   input:{
     height:20,
@@ -79,12 +80,15 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
-},
+  },
   touchable:{
     backgroundColor: '#ccc',
     borderRadius:4,
     marginVertical:10,
-  }
+  },
+  text:{
+    color: "white",
+  },
 })
 
 export default Buscador;
