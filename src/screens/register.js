@@ -12,9 +12,9 @@ class Register extends Component{
         }
     }
 
-    disabled(){
-         {this.state.email && this.state.password && this.state.username ? document.getElementById("submitbutton").disabled = false : document.getElementById("submitbutton").disabled = true;}
-    }
+    // disabled(){
+    //      {this.state.email && this.state.password && this.state.username ? document.getElementById("submitbutton").disabled = false : document.getElementById("submitbutton").disabled = true;}
+//}
     
     render(){
         return(
@@ -23,19 +23,19 @@ class Register extends Component{
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
-                    onChangeText={()=>this.disabled()}
+                    // onChangeText={()=>this.disabled()}
                     placeholder='Email'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({username: text})}
-                    onChangeText={()=>this.disabled()}
+                    // onChangeText={()=>this.disabled()}
                     placeholder='Usuario'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
-                    onChangeText={()=>this.disabled()}
+                    // onChangeText={()=>this.disabled()}
                     placeholder='Contraseña'
                     keyboardType='email-address'
                     secureTextEntry={true}
@@ -59,7 +59,7 @@ class Register extends Component{
                 <LinearGradient
                     colors={['#00C618', '#98ED00', '#00C618']}
                     style={styles.button}>
-                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton" disabled>
+                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton">
                                 <Text style={styles.textButton}>R E G I S T R A R S E </Text>    
                             </TouchableOpacity>
                     </LinearGradient>
