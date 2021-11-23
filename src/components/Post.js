@@ -23,7 +23,7 @@ class Post extends Component{
             myLike: this.props.postData.data.likes.includes(auth.currentUser.email),  
         })
         }
-        
+        console.log(this.props.postData.data.comments)
     }
 
     darLike(){
@@ -125,12 +125,15 @@ class Post extends Component{
                     <TouchableOpacity onPress={()=>this.hideModal()}>
                     <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24}}/>
                     </TouchableOpacity> 
-                   
-                    <FlatList 
-                    data={this.props.postData.data}
-                    keyExtractor={item => item.owner}
-                    renderItem = { ({item}) => <Text>{item.comment}</Text> }
-                    />
+                   { this.props.postData.data.comments ?
+                        <FlatList 
+                        data={this.props.postData.data}
+                        keyExtractor={item => item.owner}
+                        renderItem = { ({item}) => <Text>{item.comments}</Text> }
+                        /> :
+                        <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
+                }
+                    
                     {/* Formulario para nuevo comentarios */}
                     <View>
                         <TextInput placeholder="Deja tu comentario!"

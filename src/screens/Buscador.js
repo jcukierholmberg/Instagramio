@@ -45,10 +45,10 @@ class Buscador extends Component{
         <TextInput keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
         <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
         <FlatList 
-          data= { this.state.posteos }
-          keyExtractor = { post => post.id}
-          renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
-        />
+        data= { this.state.posteos }
+        keyExtractor = { post => post.id}
+        renderItem = { ({item}) => <Post postData={item} />}
+        /> 
       </View>
       )
   }

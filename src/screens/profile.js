@@ -42,6 +42,9 @@ class Profile extends Component{
           <Text>{this.state.posteos.length} posteos</Text>
           <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
+          <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
+            <Text style={styles.touchableText}>Cerrar sesión</Text>
+          </TouchableOpacity> 
 
         <View style={styles.container}>
           <FlatList 
@@ -49,11 +52,7 @@ class Profile extends Component{
             keyExtractor = { post => post.id}
             renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
           />
-        </View>
-
-          <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
-            <Text style={styles.touchableText}>Cerrar sesión</Text>
-          </TouchableOpacity>         
+        </View>        
       </View>       
     )
   }

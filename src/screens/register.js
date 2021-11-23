@@ -33,13 +33,16 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                <LinearGradient
+                { this.state.email == '' || this.state.password == '' || this.state.username == ''?
+                    <Text></Text> :
+                    <LinearGradient
                 colors={['#DB0058', '#ED3B83', '#DB0058']}
                 style={styles.button}>
                         <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} >
                             <Text style={styles.textButton}>Registrarse</Text>    
                         </TouchableOpacity>
                 </LinearGradient>
+                }
                 
             </View>
         )
