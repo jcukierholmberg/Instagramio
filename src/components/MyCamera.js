@@ -96,19 +96,19 @@ class MyCamera extends Component{
                     </React.Fragment>
                     :
                     //render de la cámara
-                    <View style={styles.container}>
+                    <View >
                         <Camera
                             style={styles.cameraBody}
                             type={Camera.Constants.Type.back}
                             ref={ reference => this.camera = reference }
                         />
                         <TouchableOpacity style={styles.button} onPress={()=>this.takePicture()}>
-                        <FontAwesomeIcon icon={faCamera} style={{fontSize: 24}}/>
+                        <FontAwesomeIcon icon={faCamera} style={{fontSize:35}}/>
                         </TouchableOpacity>
                     </View> 
                 :
                 //render mensaje
-                <Text>No tienes permisos para usar la cámara</Text>
+                <Text style={styles.text}>No tienes permisos para usar la cámara...</Text>
 
             }
             </View>
@@ -121,17 +121,20 @@ class MyCamera extends Component{
 
 const styles=StyleSheet.create({
     container:{
-        flex:1,
         backgroundColor: "#D0006E",
     },
     cameraBody:{
-        flex:7,
+        height:250,
         margin:15,
         borderRadius: 6,
     },
     button:{
-        flex:1,
         justifyContent: 'center',
+        color: "white",
+    },
+    text:{
+        color:"white",
+        margin:15,
     }
 })
 

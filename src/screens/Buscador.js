@@ -44,42 +44,50 @@ class Buscador extends Component{
   render(){
     return(
       <View style={styles.container}>
-        <TextInput keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
-        <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
-        {  this.state.posteos.length ?
-        <FlatList 
-        data= { this.state.posteos }
-        keyExtractor = { post => post.id}
-        renderItem = { ({item}) => <Post postData={item} />}
-        /> :
-        <Text>El usuario no existe o aún no tiene publicaciones</Text> 
-      }
+          <TextInput style={styles.input} keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
+          <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
+          {/* {
+
+            if(this.state.resultadoBusqueda){
+              if(this.state.posteos.length){
+              <FlatList 
+              data= { this.state.posteos }
+              keyExtractor = { post => post.id}
+              renderItem = { ({item}) => <Post postData={item} />}
+              /> 
+              } else {
+              <Text>El usuario no existe o aún no tiene publicaciones</Text>
+              }  
+            }
+            else {
+              <Text> </Text>
+            } 
+
+          } */}
+          
+          
       </View>
-      )
-  }
+      )}
 }
 
 const styles = StyleSheet.create({
   container:{
+    paddingBottom:600,
     paddingHorizontal:10,
     backgroundColor: "D0006E",
   },
-  formContainer:{
-    backgroundColor: '#ffffff',
-    marginHorizontal: 10,
-    padding:10,
-  },
-  field:{
-    borderColor: '#444',
-    borderWidth:1,
-    borderStyle: 'solid',
-    height: 20,
-    paddingHorizontal: 20,
-    paddingVertical:10
-  },
-  image:{
-    height: 250,
-  },
+  input:{
+    height:20,
+    paddingVertical:15,
+    paddingHorizontal: 10,
+    borderRadius: 6,
+    marginVertical:10,
+    backgroundColor: "white",
+    shadowColor: '#171717',
+    shadowOffset: {width: -2, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+},
   touchable:{
     backgroundColor: '#ccc',
     borderRadius:4,
