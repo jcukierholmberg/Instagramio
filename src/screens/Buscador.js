@@ -44,8 +44,11 @@ class Buscador extends Component{
   render(){
     return(
       <View style={styles.container}>
+        <View style={{flexDirection:"row", alignItems:"center"}}>
           <TextInput style={styles.input} keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
-          <TouchableOpacity style={styles.text} onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faSearch} style={{fontSize: 24}}/> </TouchableOpacity>
+          <TouchableOpacity style={styles.icon} onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faSearch} style={{fontSize: 24}}/> </TouchableOpacity>
+        </View>
+          
          
          {
           
@@ -54,7 +57,7 @@ class Buscador extends Component{
           data= { this.state.posteos }
           keyExtractor = { post => post.id}
           renderItem = { ({item}) => <Post postData={item} />} /> :
-          <Text style={styles.text}> No hay usuario </Text> 
+          <Text style={styles.text}> No hay usuarios </Text> 
           
          }
         
@@ -70,6 +73,7 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   input:{
+    flex:8,
     height:20,
     paddingVertical:15,
     paddingHorizontal: 10,
@@ -80,15 +84,23 @@ const styles = StyleSheet.create({
     shadowOffset: {width: -2, height: 4},
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    width: 320
   },
   touchable:{
     backgroundColor: '#ccc',
     borderRadius:4,
     marginVertical:10,
   },
-  text:{
+  icon:{
+    flex:1,
     color: "white",
+    paddingLeft:10,
   },
+  text:{
+    color:"white",
+    paddingTop:20,
+    fontSize: 20
+  }
 })
 
 export default Buscador;

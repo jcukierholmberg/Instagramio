@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image, FlatL
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart, faComment, faShare, faTimes, faTrash} from "@fortawesome/free-solid-svg-icons"
+import {faHeart, faComment, faTimes, faTrash, faChevronRight, faUserCircle} from "@fortawesome/free-solid-svg-icons"
 
 
 class Post extends Component{
@@ -93,15 +93,21 @@ class Post extends Component{
     render(){
         return(
             <View style={styles.container}>
-            <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
-            { auth.currentUser.email === this.props.postData.data.owner ?
-                <TouchableOpacity onPress={()=>this.borrarPost()}><FontAwesomeIcon icon={faTrash} style={{color:"black", fontSize: 26}}/></TouchableOpacity> :
+            <View style={styles.usuario}>
+                <FontAwesomeIcon icon={faUserCircle} style={{color:"black", fontSize: 26, flex:1, paddingRight:8 }}/>
+                <Text style={styles.user}>{this.props.postData.data.owner} </Text>
+                { auth.currentUser.email === this.props.postData.data.owner ?
+                <TouchableOpacity onPress={()=>this.borrarPost()}><FontAwesomeIcon icon={faTrash} style={{color:"black", fontSize: 26, flex:1}}/></TouchableOpacity> :
                 ""
             }
+            </View>
+            
+            
             <Image 
             style={{height: 230, marginTop: 17, marginBottom: 15, borderRadius:4}}
             source={{uri: this.props.postData.data.photo}} 
             resizeMode= 'contain'/>
+            <View style={styles.ordenar}>
             {
                 this.state.myLike == false ?
                 
@@ -113,22 +119,18 @@ class Post extends Component{
                 </TouchableOpacity>                       
             }
                 <TouchableOpacity onPress={()=>this.showModal()}>
-                <FontAwesomeIcon icon={faComment} style={{color:"black", fontSize: 24}}/>
+                <FontAwesomeIcon icon={faComment} style={{paddingLeft:10, color:"black", fontSize: 24}}/>
                 </TouchableOpacity>
+            </View>
+            
 
             <Text>{this.state.likes} Me gusta </Text>
             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
             
-               
-            
-            {/* Ver modal */}
-            <TouchableOpacity onPress={()=>this.showModal()}>
-            <Text>Mostrar comentarios del posteo</Text>
-            </TouchableOpacity>
 
             {/* Modal para comentarios */}
             {   this.state.showModal ?
-                <Modal style={{height: 150}}
+                <Modal style={styles.modal}
                     visible={this.state.showModal}
                     animationType='slide'
                     transparent={false}
@@ -142,15 +144,15 @@ class Post extends Component{
                                 data={this.props.postData.data.comments}
                                 initialNumToRender={this.props.postData.data.comments.length}
                                 keyExtractor={item => item.createdAt}
-                                renderItem = {({item}) => <Text>{item.author} : {item.comment}</Text> }
+                                renderItem = {({item}) => <Text> <strong>{item.author}</strong> {item.comment}</Text> }
                                 /> :
                                 <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
                         }
                     </ScrollView>
 
                     {/* Formulario para nuevo comentarios */}
-                    <View>
-                        <TextInput placeholder="Deja tu comentario!"
+                    <View style={styles.comentario}>
+                        <TextInput style={{flex:4}} placeholder="Deja tu comentario!"
                             keyboardType="default"
                             multiline
                             onChangeText={text => this.setState({comment: text})}
@@ -158,8 +160,8 @@ class Post extends Component{
                         />
                         { this.state.comment == ''?
                         <Text></Text> :
-                        <TouchableOpacity onPress={()=>{this.guardarComentario()}}>
-                        <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/>
+                        <TouchableOpacity style={{flex:1, paddingLeft:15}} onPress={()=>{this.guardarComentario()}}>
+                        <FontAwesomeIcon icon={faChevronRight} style={{fontSize: 24}}/>
                         </TouchableOpacity>
                     }
                     </View>
@@ -187,7 +189,25 @@ const styles = StyleSheet.create({
     },
     caption:{
         fontWeight: "bold",
-    }
+    },
+    user:{
+        flex:12,
+        fontWeight: "bold",
+    },
+    modal:{
+        borderColor: "white",
+    },
+    ordenar:{
+        flexDirection: "row",
+    },
+    comentario:{
+    flexDirection: "row"
+    },
+    usuario:{
+        flexDirection:"row",
+        alignItems: "center",
+
+    },
 })
 
 export default Post
