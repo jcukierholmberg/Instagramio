@@ -136,7 +136,7 @@ class Post extends Component{
                     transparent={false}
                 >   
                     <TouchableOpacity onPress={()=>this.hideModal()}>
-                    <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24}}/>
+                    <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24, alignSelf:"end"}}/>
                     </TouchableOpacity> 
                     <ScrollView>
                         { this.props.postData.data.comments ?
@@ -144,7 +144,7 @@ class Post extends Component{
                                 data={this.props.postData.data.comments}
                                 initialNumToRender={this.props.postData.data.comments.length}
                                 keyExtractor={item => item.createdAt}
-                                renderItem = {({item}) => <Text> <strong>{item.author}</strong> {item.comment}</Text> }
+                                renderItem = {({item}) => <Text><strong>{item.author}</strong> {item.comment}</Text> }
                                 /> :
                                 <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
                         }
@@ -152,7 +152,7 @@ class Post extends Component{
 
                     {/* Formulario para nuevo comentarios */}
                     <View style={styles.comentario}>
-                        <TextInput style={{flex:4}} placeholder="Deja tu comentario!"
+                        <TextInput style={{flex:4, marginTop:4}} placeholder="Deja tu comentario!"
                             keyboardType="default"
                             multiline
                             onChangeText={text => this.setState({comment: text})}
