@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput, Alert} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput, Alert, Button, AppRegistry} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import Post from '../components/Post';
@@ -12,7 +12,8 @@ class Profile extends Component{
     this.state ={
       posteos: [],
       loggedIn: true,
-      user: ''
+      user: '',
+      message: ''
     }
   }
   componentDidMount(){
@@ -47,23 +48,27 @@ class Profile extends Component{
       })
     })
     .then(()=> location.reload())
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      this.setState({
+          message: error.message,
+      })
+  })
 }
 
-showAlert1() {  
-  Alert.alert(  
-      'Alert Title',  
-      'My Alert Msg',  
-      [  
-          {  
-              text: 'Cancelar',  
-              onPress: () => console.log('Cancel Pressed'),  
-              style: 'cancel',  
-          },  
-          {text: 'OK', onPress: () => console.log('OK Pressed')},  
-      ]  
-  );  
-}  
+createTwoButtonAlert(){
+    Alert.alert(
+      "Alert Title",
+      "My Alert Msg",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => console.log("OK Pressed") }
+      ]
+    )}
 
   render(){
     return(
@@ -77,7 +82,6 @@ showAlert1() {
           <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
             <Text style={styles.touchableText}>Cerrar sesión</Text>
           </TouchableOpacity> 
-
         <View style={styles.container}>
           <FlatList 
             data= { this.state.posteos }
@@ -85,8 +89,9 @@ showAlert1() {
             renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
           />
         </View>  
-        <TouchableOpacity style={styles.touchable} onPress={()=>this.showAlert1} > 
+        <TouchableOpacity style={styles.touchable} onPress={()=>this.borrarUsuario()} > 
             <Text style={styles.touchableText}>Borrar usuario</Text>
+            <Text>{this.state.message}</Text>
           </TouchableOpacity> 
       </View>       
     )
@@ -116,8 +121,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color:'#fff',
         textAlign: 'center'
-    }
-    
+    },
+    buttonContainer: {  
+      margin: 20  
+  },  
+  multiButtonContainer: {  
+      margin: 20,  
+      flexDirection: 'row',  
+      justifyContent: 'space-between'  
+  }  
 });
 
 export default Profile;
