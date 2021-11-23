@@ -59,7 +59,7 @@ class Register extends Component{
                 <LinearGradient
                     colors={['#00C618', '#98ED00', '#00C618']}
                     style={styles.button}>
-                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton">
+                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton" disabled>
                                 <Text style={styles.textButton}>R E G I S T R A R S E </Text>    
                             </TouchableOpacity>
                     </LinearGradient>

@@ -73,8 +73,6 @@ class PostForm extends Component{
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        paddingBottom:600,
-        paddingHorizontal:10,
         backgroundColor: "#D0006E",
     },
     formContainer:{
@@ -83,7 +81,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#D0006E",
     },
     input:{
-        height:20,
+        height:100,
         paddingVertical:15,
         paddingHorizontal: 10,
         borderRadius: 6,

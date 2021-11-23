@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image, FlatL
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faHeart, faComment, faShare, faTimes} from "@fortawesome/free-solid-svg-icons"
+import {faHeart, faComment, faShare, faTimes, faTrash} from "@fortawesome/free-solid-svg-icons"
 
 
 class Post extends Component{
@@ -95,7 +95,7 @@ class Post extends Component{
             <View style={styles.container}>
             <Text style={styles.caption}>{this.props.postData.data.owner} </Text>
             { auth.currentUser.email === this.props.postData.data.owner ?
-                <TouchableOpacity onPress={()=>this.borrarPost()}>B</TouchableOpacity> :
+                <TouchableOpacity onPress={()=>this.borrarPost()}><FontAwesomeIcon icon={faTrash} style={{color:"black", fontSize: 26}}/></TouchableOpacity> :
                 ""
             }
             <Image 
