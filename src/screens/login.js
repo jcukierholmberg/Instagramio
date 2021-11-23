@@ -29,10 +29,10 @@ class Login extends Component{
                     secureTextEntry={true}
                 />
                 <LinearGradient
-                colors={['#DB0058', '#ED3B83', '#DB0058']}
+                colors={['#00C618', '#98ED00', '#00C618']}
                 style={styles.button}>
                     <TouchableOpacity onPress={()=>this.props.login(this.state.email, this.state.password)}>
-                        <Text style={styles.textButton}>Ingresar</Text>    
+                        <Text style={styles.textButton}>I N G R E S A R</Text>    
                     </TouchableOpacity>
                 </LinearGradient>
                 <Text>{this.props.error}</Text>
@@ -55,27 +55,31 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         marginVertical:10,
         backgroundColor: "white",
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     },
     button:{
-        backgroundColor:'#28a745',
         paddingHorizontal: 10,
         paddingVertical: 10,
         textAlign: 'center',
-        borderRadius:4, 
-        borderWidth:1,
-        borderStyle: 'solid',
-        borderColor: 'white',
+        borderRadius:6, 
         marginTop: 20,
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 8},
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
     
     },
     textButton:{
-        fontWeight: 'bold',
-        color:'#fff',
+        fontWeight: 'thin',
+        color:'white',
         textAlign: 'center',
         fontSize: 16,
     },
     titulo:{
-        fontWeight: 'bold',
+        fontWeight: 'thin',
         color:'white',
         fontSize: 20,
         marginTop:5,
