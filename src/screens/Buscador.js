@@ -44,16 +44,15 @@ class Buscador extends Component{
   render(){
     return(
       <View style={styles.container}>
-        {/* <Text>{this.state.aviso}</Text> */}
         <TextInput keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
         <TouchableOpacity onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faShare} style={{fontSize: 24}}/> </TouchableOpacity>
-        {  this.state.posteos.length === 0?
-          <Text>El usuario no existe o aún no tiene publicaciones</Text> :
+        {  this.state.posteos.length ?
         <FlatList 
         data= { this.state.posteos }
         keyExtractor = { post => post.id}
         renderItem = { ({item}) => <Post postData={item} />}
-        /> 
+        /> :
+        <Text>El usuario no existe o aún no tiene publicaciones</Text> 
       }
       </View>
       )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image, FlatList} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Modal, TextInput, Image, FlatList, ScrollView} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -15,7 +15,7 @@ class Post extends Component{
            showModal: false, //Para la vista del modal
            comment:'', //para limpiar el campo después de enviar.
         }
-        console.log(this.props.postData)
+        console.log(this.props.postData.comment)
     }
     componentDidMount(){
         if(this.props.postData.data.likes){
@@ -72,17 +72,14 @@ class Post extends Component{
             author: auth.currentUser.email,
             comment: this.state.comment, 
         }
-        //identifacar el documento que queremos modificar.
          db.collection('posts').doc(this.props.postData.id).update({
            comments:firebase.firestore.FieldValue.arrayUnion(oneComment)
         })
-
-        //Armar el comentario que vamos a guardar.  
-            //Conseguir el estado
-
-        //Guardarlo en un colección: modifacer un documento
-
-        //limpiar el estado
+        .then(()=>{
+            this.setState({
+                comment: ''
+            })
+        })
     }
 
     borrarPost(){
@@ -115,8 +112,9 @@ class Post extends Component{
                     <FontAwesomeIcon icon={faHeart} style={{color:"red", fontSize: 24}}/>
                 </TouchableOpacity>                       
             }
-
-            <FontAwesomeIcon icon={faComment} style={{color:"black", fontSize: 24}}/>
+                <TouchableOpacity onPress={()=>this.showModal()}>
+                <FontAwesomeIcon icon={faComment} style={{color:"black", fontSize: 24}}/>
+                </TouchableOpacity>
 
             <Text>{this.state.likes} Me gusta </Text>
             <Text style={styles.caption}>{this.props.postData.data.texto}</Text>
@@ -130,7 +128,7 @@ class Post extends Component{
 
             {/* Modal para comentarios */}
             {   this.state.showModal ?
-                <Modal
+                <Modal style={{height: 150}}
                     visible={this.state.showModal}
                     animationType='slide'
                     transparent={false}
@@ -138,15 +136,18 @@ class Post extends Component{
                     <TouchableOpacity onPress={()=>this.hideModal()}>
                     <FontAwesomeIcon icon={faTimes} style={{color:"black", fontSize: 24}}/>
                     </TouchableOpacity> 
-                   { this.props.postData.data.comments ?
-                        <FlatList 
-                        data={this.props.postData.data.comments}
-                        keyExtractor={item => item.createdAt}
-                        renderItem = { ({item}) => <Text>{item.comment}</Text> }
-                        /> :
-                        <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
-                }
-                    
+                    <ScrollView>
+                        { this.props.postData.data.comments ?
+                                <FlatList
+                                data={this.props.postData.data.comments}
+                                initialNumToRender={this.props.postData.data.comments.length}
+                                keyExtractor={item => item.createdAt}
+                                renderItem = {({item}) => <Text>{item.author} : {item.comment}</Text> }
+                                /> :
+                                <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>
+                        }
+                    </ScrollView>
+
                     {/* Formulario para nuevo comentarios */}
                     <View>
                         <TextInput placeholder="Deja tu comentario!"

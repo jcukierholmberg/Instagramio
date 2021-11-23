@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
+import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput, Alert} from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
-import Post from '../components/Post'
+import Post from '../components/Post';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator} from '@react-navigation/drawer';
 
 class Profile extends Component{
   constructor(props){
     super(props);
     this.state ={
       posteos: [],
+      loggedIn: true,
+      user: ''
     }
   }
   componentDidMount(){
@@ -33,6 +37,34 @@ class Profile extends Component{
     )
 
   }
+
+  borrarUsuario(){
+    auth.currentUser.delete()
+    .then( ()=>{
+      this.setState({
+          user:'',
+          loggedIn: false,
+      })
+    })
+    .then(()=> location.reload())
+    .catch(error => console.log(error))
+}
+
+showAlert1() {  
+  Alert.alert(  
+      'Alert Title',  
+      'My Alert Msg',  
+      [  
+          {  
+              text: 'Cancelar',  
+              onPress: () => console.log('Cancel Pressed'),  
+              style: 'cancel',  
+          },  
+          {text: 'OK', onPress: () => console.log('OK Pressed')},  
+      ]  
+  );  
+}  
+
   render(){
     return(
       <View style={styles.container}>
@@ -52,7 +84,10 @@ class Profile extends Component{
             keyExtractor = { post => post.id}
             renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
           />
-        </View>        
+        </View>  
+        <TouchableOpacity style={styles.touchable} onPress={()=>this.showAlert1} > 
+            <Text style={styles.touchableText}>Borrar usuario</Text>
+          </TouchableOpacity> 
       </View>       
     )
   }
