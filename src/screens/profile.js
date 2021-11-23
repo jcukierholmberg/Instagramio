@@ -5,6 +5,7 @@ import firebase from 'firebase';
 import Post from '../components/Post';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator} from '@react-navigation/drawer';
+import { LinearGradient } from 'expo-linear-gradient';
 
 class Profile extends Component{
   constructor(props){
@@ -73,26 +74,35 @@ createTwoButtonAlert(){
   render(){
     return(
       <View style={styles.container}>
-          <Text style={styles.welcome}> Bienvenido  {this.props.userData.username}</Text>
-          <Text style={styles.welcome}>{this.props.userData.email}</Text>
-          {/* <Text style={styles.welcome}> Posteos:  {this.props.posts.length}</Text> */}
-          <Text>{this.state.posteos.length} posteos</Text>
-          <Text style={styles.element}> Usuario creado el: {this.props.userData.metadata.creationTime}</Text>
+          <Text style={styles.welcome}>B I E N V E N I D O !  {this.props.userData.username}</Text>
+          <Text style={styles.mail}>{this.props.userData.email}</Text>
+          <Text style={styles.element}>{this.state.posteos.length} posteos</Text>
+          <Text style={styles.element}> En Instagramio desde: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
-          <TouchableOpacity style={styles.touchable} onPress={()=>this.props.logout()}>
-            <Text style={styles.touchableText}>Cerrar sesión</Text>
-          </TouchableOpacity> 
-        <View style={styles.container}>
+           
+          <LinearGradient
+                colors={['#A60800', '#FF0D00', '#A60800']}
+                style={styles.button}>
+                <TouchableOpacity onPress={()=>this.props.logout()}>
+                      <Text style={styles.touchableText}>C E R R A R  S E S I Ó N</Text>
+                </TouchableOpacity>
+          </LinearGradient>
+        <View style={styles.posteos}>
           <FlatList 
             data= { this.state.posteos }
             keyExtractor = { post => post.id}
             renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
           />
         </View>  
-        <TouchableOpacity style={styles.touchable} onPress={()=>this.borrarUsuario()} > 
-            <Text style={styles.touchableText}>Borrar usuario</Text>
-            <Text>{this.state.message}</Text>
-          </TouchableOpacity> 
+          <LinearGradient
+                colors={['#A60800', '#FF0D00', '#A60800']}
+                style={styles.button}>
+            <TouchableOpacity onPress={()=>this.borrarUsuario()} > 
+                  <Text style={styles.touchableText}>E L I M I N A R  U S U A R I O</Text>
+                  <Text>{this.state.message}</Text>
+            </TouchableOpacity>
+          </LinearGradient>
+         
       </View>       
     )
   }
@@ -100,22 +110,39 @@ createTwoButtonAlert(){
 
 const styles = StyleSheet.create({
     container:{
+        paddingHorizontal:10,
         backgroundColor: "#D0006E",
+        paddingBottom: 600,
+    },
+    posteos:{
+        margin:10,
     },
     welcome:{
-        fontSize:18,
+        fontSize:25,
         marginTop:20,
-        marginBottom:30,
-        fontWeight: 'bold'
+        fontWeight: 'light',
+        color: "white",
+    },
+    mail:{
+      fontSize:20,
+      fontWeight: 'light',
+      color: "white",
+      marginBottom:15,
     },
     element:{
         marginBottom:10,
+        color: "white",
     },
-    touchable:{
-        padding: 10,
-        backgroundColor: '#dc3545',
-        marginTop: 30,
-        borderRadius: 4,
+    button:{
+      paddingHorizontal: 10,
+      paddingVertical: 10,
+      textAlign: 'center',
+      borderRadius:6, 
+      marginTop: 20,
+      shadowColor: '#171717',
+      shadowOffset: {width: -2, height: 8},
+      shadowOpacity: 0.3,
+      shadowRadius: 3,
     },
     touchableText:{
         fontWeight: 'bold',
@@ -124,12 +151,12 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {  
       margin: 20  
-  },  
-  multiButtonContainer: {  
+    },  
+    multiButtonContainer: {  
       margin: 20,  
       flexDirection: 'row',  
       justifyContent: 'space-between'  
-  }  
+    }  
 });
 
 export default Profile;
