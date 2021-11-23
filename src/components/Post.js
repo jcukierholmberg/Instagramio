@@ -94,7 +94,7 @@ class Post extends Component{
         return(
             <View style={styles.container}>
             <View style={styles.usuario}>
-                <FontAwesomeIcon icon={faUserCircle} style={{color:"black", fontSize: 20, flex:1, paddingRight:8 }}/>
+                <FontAwesomeIcon icon={faUserCircle} style={{color:"black", fontSize: 24, flex:1, paddingRight:8 }}/>
                 <Text style={styles.user}>{this.props.postData.data.owner} </Text>
                 { auth.currentUser.email === this.props.postData.data.owner ?
                 <TouchableOpacity onPress={()=>this.borrarPost()}><FontAwesomeIcon icon={faTrash} style={{color:"black", fontSize: 20, flex:1}}/></TouchableOpacity> :
