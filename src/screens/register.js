@@ -43,7 +43,7 @@ class Register extends Component{
                         </TouchableOpacity>
                 </LinearGradient>
                 }
-                
+                <Text>{this.props.error}</Text>
             </View>
         )
     }

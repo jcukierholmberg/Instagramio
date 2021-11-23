@@ -22,7 +22,9 @@ class NavBar extends Component{
             loggedIn: false,
             user: '',
             errorM: '',
-            errorC: ''
+            errorC: '',
+            errorR: '',
+            errorCode: ''
         }
     }
     // hago un componentDidMount para que sepa que hay un usuario logueado y no este cargando todo el tiempo
@@ -43,7 +45,13 @@ class NavBar extends Component{
             .then( ()=>{
                 console.log('Registrado');
             })
-            .catch( error => console.log(error))
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    errorR: error.message,
+                    errorCode: error.code
+                })
+            })
     }
     login(email,pass){
         auth.signInWithEmailAndPassword(email,pass)
@@ -78,7 +86,7 @@ class NavBar extends Component{
             <NavigationContainer style={styles.topmenu}>
             {this.state.loggedIn == false ?
                 <Drawer.Navigator>
-                    <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} />} />
+                    <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} error={this.state.errorR}/>} />
                     <Drawer.Screen name="Iniciar sesión" component={()=><Login login={(email, pass)=>this.login(email, pass)} error={this.state.errorM}/>}/>
                 </Drawer.Navigator> :
                 <Drawer.Navigator>
