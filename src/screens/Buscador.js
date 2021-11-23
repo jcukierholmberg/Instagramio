@@ -20,7 +20,7 @@ class Buscador extends Component{
   }
 
   filtro (){
-    db.collection('posts').where("owner","==",this.state.resultadoBusqueda).onSnapshot(
+    db.collection('posts').where("owner","==",this.state.resultadoBusqueda).onSnapshot( //podemos usar onSnapshot o el metodo GET - usamos onSnapshot porque es mas rapido, con el GEt pendriamos que refrescar la pagina para qwue aparezca la info pero con onSnapshot aparece sola
         docs => {
           //Array para crear datos en formato más útil.
           let posts = [];
