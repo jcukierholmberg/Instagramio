@@ -4,6 +4,7 @@ import {Camera} from 'expo-camera';
 import {db, storage} from '../firebase/config';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCamera} from "@fortawesome/free-solid-svg-icons"
+import { LinearGradient } from 'expo-linear-gradient';
 
 class MyCamera extends Component{
     constructor(props){
@@ -88,12 +89,21 @@ class MyCamera extends Component{
                             resizeMode= 'contain'
                         />
                         <View>
+                        <LinearGradient
+                        colors={['#00C618', '#98ED00', '#00C618']}
+                        style={styles.button}>
                             <TouchableOpacity onPress={()=>this.savePhoto()}>
-                                <Text>Aceptar</Text>
+                                    <Text>Aceptar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={()=>this.clear()}>
-                                <Text>Rechazar</Text> 
-                            </TouchableOpacity>
+                        </LinearGradient>
+                            <LinearGradient
+                            colors={['#A60800', '#FF0D00', '#A60800']}
+                            style={styles.button}>
+                                <TouchableOpacity onPress={()=>this.clear()}>
+                                    <Text>Rechazar</Text> 
+                                </TouchableOpacity>
+                            </LinearGradient>
+                            
                         </View>
                         </React.Fragment>
                     :
@@ -105,7 +115,7 @@ class MyCamera extends Component{
                             ref={ reference => this.camera = reference }
                         />
                         <TouchableOpacity style={styles.button} onPress={()=>this.takePicture()}>
-                        <FontAwesomeIcon icon={faCamera} style={{fontSize: 24}}/>
+                        <FontAwesomeIcon icon={faCamera} style={{fontSize: 25, color:"white"}}/>
                         </TouchableOpacity>
                     </View> 
                 :
@@ -132,6 +142,16 @@ const styles=StyleSheet.create({
     button:{
         flex:1,
         justifyContent: 'center',
+            paddingHorizontal: 10,
+            paddingVertical: 10,
+            textAlign: 'center',
+            alignItems:"center",
+            borderRadius:6, 
+            shadowColor: '#171717',
+            shadowOffset: {width: -2, height: 8},
+            shadowOpacity: 0.3,
+            shadowRadius: 3,
+            margin:15,
     }
 })
 export default MyCamera;

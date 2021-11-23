@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
   container:{
     paddingBottom:600,
     paddingHorizontal:10,
-    backgroundColor: "D0006E",
+    backgroundColor: "#D0006E",
   },
   input:{
     height:20,
