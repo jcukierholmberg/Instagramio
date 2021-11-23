@@ -16,11 +16,13 @@ import Buscador from '../screens/Buscador'
 const Drawer = createDrawerNavigator();
 
 class NavBar extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
-            loggedIn:false,
-            user:''
+            loggedIn: false,
+            user: '',
+            errorM: '',
+            errorC: ''
         }
     }
     // hago un componentDidMount para que sepa que hay un usuario logueado y no este cargando todo el tiempo
@@ -51,7 +53,13 @@ class NavBar extends Component{
                     user: userInfo.user,
                 })
             })
-            .catch(error => console.log(error))
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    errorM: error.message,
+                    errorC: error.code
+                })
+            })
     }
 
     logout(){
@@ -71,7 +79,7 @@ class NavBar extends Component{
             {this.state.loggedIn == false ?
                 <Drawer.Navigator>
                     <Drawer.Screen name="Registro" component={()=><Register register={(email, pass)=>this.register(email, pass)} />} />
-                    <Drawer.Screen name="Iniciar sesión" component={()=><Login login={(email, pass)=>this.login(email, pass)} />}/>
+                    <Drawer.Screen name="Iniciar sesión" component={()=><Login login={(email, pass)=>this.login(email, pass)} error={this.state.errorM}/>}/>
                 </Drawer.Navigator> :
                 <Drawer.Navigator>
                      <Drawer.Screen name="Instagramio" component={()=><Inicio />} />

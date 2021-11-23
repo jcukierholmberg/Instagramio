@@ -8,8 +8,8 @@ class Login extends Component{
         this.state={
             email:'',
             password:'',
-            error:'',
         }
+        console.log(this.props.state)
     }
 
     render(){
@@ -35,6 +35,7 @@ class Login extends Component{
                         <Text style={styles.textButton}>Ingresar</Text>    
                     </TouchableOpacity>
                 </LinearGradient>
+                <Text>{this.props.error}</Text>
                 
             </View>
         )
