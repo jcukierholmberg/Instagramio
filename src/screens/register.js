@@ -23,19 +23,16 @@ class Register extends Component{
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({email: text})}
-                    // onChangeText={()=>this.disabled()}
                     placeholder='Email'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({username: text})}
-                    // onChangeText={()=>this.disabled()}
                     placeholder='Usuario'
                     keyboardType='email-address'/>
                 <TextInput
                     style={styles.input}
                     onChangeText={(text)=>this.setState({password: text})}
-                    // onChangeText={()=>this.disabled()}
                     placeholder='Contraseña'
                     keyboardType='email-address'
                     secureTextEntry={true}
