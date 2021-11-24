@@ -40,29 +40,22 @@ class Register extends Component{
                     keyboardType='email-address'
                     secureTextEntry={true}
                 />
-                {/* { this.state.email == '' || this.state.password == '' || this.state.username == ''?
+                { this.state.email == '' || this.state.password == '' || this.state.username == ''?
                     <LinearGradient
-                    colors={['#DB0058', '#ED3B83', '#DB0058']}
+                    colors={['#A9A9A9', '#C0C0C0', '#A9A9A9']}
                     style={styles.button}>
                             <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)}  disabled>
-                                <Text style={styles.textButton}>Registrarse</Text>    
+                                <Text style={styles.textButton}>R E G I S T R A R S E </Text>    
                             </TouchableOpacity>
                     </LinearGradient> :
                     <LinearGradient
-                    colors={['#DB0058', '#ED3B83', '#DB0058']}
-                    style={styles.button}>
-                            <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} >
-                                <Text style={styles.textButton}>Registrarse</Text>    
-                            </TouchableOpacity>
-                    </LinearGradient>
-                } */}
-                <LinearGradient
                     colors={['#00C618', '#98ED00', '#00C618']}
                     style={styles.button}>
                             <TouchableOpacity  onPress={()=>this.props.register(this.state.email, this.state.password, this.state.username)} id="submitbutton" >
                                 <Text style={styles.textButton}>R E G I S T R A R S E </Text>    
                             </TouchableOpacity>
                     </LinearGradient>
+                }
                 <Text>{this.props.error}</Text>
             </View>
         )
