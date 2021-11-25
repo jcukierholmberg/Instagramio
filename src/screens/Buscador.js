@@ -16,7 +16,7 @@ class Buscador extends Component{
   }
 
   filtro (){
-    db.collection('posts').orderBy("createdAt", "desc").where("owner","==",this.state.resultadoBusqueda).onSnapshot( 
+    db.collection('posts').where("owner","==",this.state.resultadoBusqueda).orderBy("createdAt", "desc").onSnapshot( 
         docs => {
           let posts = [];
           docs.forEach( doc => {
@@ -38,7 +38,7 @@ class Buscador extends Component{
     return(
       <View style={styles.container}>
         <View style={{flexDirection:"row", alignItems:"center"}}>
-          <TextInput style={styles.input} keyboardType='email-address' placeholder='Buscar usuario' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
+          <TextInput style={styles.input} keyboardType='email-address' placeholder='Buscar email del usuario ' onChangeText={(texto)=> this.setState({resultadoBusqueda: texto})}/>
           <TouchableOpacity style={styles.icon} onPress={()=> this.filtro()}> <FontAwesomeIcon icon={faSearch} style={{fontSize: 24}}/> </TouchableOpacity>
         </View>
           
