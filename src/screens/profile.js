@@ -19,7 +19,7 @@ class Profile extends Component{
   }
   componentDidMount(){
     
-    db.collection('posts').where("owner","==",auth.currentUser.email).onSnapshot(
+    db.collection('posts').orderBy("createdAt", "desc").where("owner","==",auth.currentUser.email).onSnapshot(
       docs => {
         //Armo un array vacio asi guardo solo la info que me sirve - esa info me la da data()
         let posts = [];
@@ -80,13 +80,7 @@ createTwoButtonAlert(){
           <Text style={styles.element}> En Instagramio desde: {this.props.userData.metadata.creationTime}</Text>
           <Text style={styles.element}> Última sesión: {this.props.userData.metadata.lastSignInTime}</Text>
            
-          <LinearGradient
-                colors={['#A60800', '#FF0D00', '#A60800']}
-                style={styles.button}>
-                <TouchableOpacity onPress={()=>this.props.logout()}>
-                      <Text style={styles.touchableText}>C E R R A R  S E S I Ó N</Text>
-                </TouchableOpacity>
-          </LinearGradient>
+          
         <View style={styles.posteos}>
           <FlatList 
             data= { this.state.posteos }
@@ -94,14 +88,21 @@ createTwoButtonAlert(){
             renderItem = { ({item}) => <Post postData={item} />} // <Text>{item.data.texto}</Text>//Podríamos armar un componente <Post > más complejo y rendirazolo con los datos de cada documanto.
           />
         </View>  
-          <LinearGradient
+        <LinearGradient
+                colors={['#A60800', '#FF0D00', '#A60800']}
+                style={styles.button}>
+              <TouchableOpacity onPress={()=>this.props.logout()}>
+                  <Text style={styles.touchableText}>C E R R A R  S E S I Ó N</Text>
+              </TouchableOpacity>
+        </LinearGradient>
+        <LinearGradient
                 colors={['#A60800', '#FF0D00', '#A60800']}
                 style={styles.button}>
             <TouchableOpacity onPress={()=>this.borrarUsuario()} > 
                   <Text style={styles.touchableText}>E L I M I N A R  U S U A R I O</Text>
                   <Text>{this.state.message}</Text>
             </TouchableOpacity>
-          </LinearGradient>
+        </LinearGradient>
          
       </View>       
     )
@@ -149,14 +150,7 @@ const styles = StyleSheet.create({
         color:'#fff',
         textAlign: 'center'
     },
-    buttonContainer: {  
-      margin: 20  
-    },  
-    multiButtonContainer: {  
-      margin: 20,  
-      flexDirection: 'row',  
-      justifyContent: 'space-between'  
-    }  
+    
 });
 
 export default Profile;

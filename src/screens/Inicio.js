@@ -13,7 +13,7 @@ class Inicio extends Component{
   }
   componentDidMount(){
     
-    db.collection('posts').onSnapshot(
+    db.collection('posts').orderBy("createdAt", "desc").onSnapshot(
       docs => {
         //Array para crear datos en formato más útil.
         let posts = [];
@@ -51,28 +51,7 @@ const styles = StyleSheet.create({
     paddingHorizontal:10,
     backgroundColor: "#D0006E",
     marginBottom:600,
-  }
-  /* formContainer:{
-    backgroundColor: '#ffffff',
-    marginHorizontal: 10,
-    padding:10,
   },
-  field:{
-    borderColor: '#444',
-    borderWidth:1,
-    borderStyle: 'solid',
-    height: 20,
-    paddingHorizontal: 20,
-    paddingVertical:10
-  },
-  image:{
-    height: 250,
-  },
-  touchable:{
-    backgroundColor: '#ccc',
-    borderRadius:4,
-    marginVertical:10,
-  } */
 })
 
 export default Inicio;

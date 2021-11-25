@@ -15,14 +15,10 @@ class Buscador extends Component{
       aviso: 'Filtra los posteos por usuario'
     }
   }
-  componentDidMount(){
-
-  }
 
   filtro (){
-    db.collection('posts').where("owner","==",this.state.resultadoBusqueda).onSnapshot( //podemos usar onSnapshot o el metodo GET - usamos onSnapshot porque es mas rapido, con el GEt pendriamos que refrescar la pagina para qwue aparezca la info pero con onSnapshot aparece sola
+    db.collection('posts').orderBy("createdAt", "desc").where("owner","==",this.state.resultadoBusqueda).onSnapshot( //podemos usar onSnapshot o el metodo GET - usamos onSnapshot porque es mas rapido, con el GEt pendriamos que refrescar la pagina para qwue aparezca la info pero con onSnapshot aparece sola
         docs => {
-          //Array para crear datos en formato más útil.
           let posts = [];
           docs.forEach( doc => {
             posts.push({
@@ -34,12 +30,11 @@ class Buscador extends Component{
           this.setState({
             posteos: posts,
             aviso: ''
-          }, 
-           ( )=> console.log(this.state.posteos))
+          })
   
         }
       )
-  }
+    }
 
   render(){
     return(
@@ -85,11 +80,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 3,
     width: 320
-  },
-  touchable:{
-    backgroundColor: '#ccc',
-    borderRadius:4,
-    marginVertical:10,
   },
   icon:{
     flex:1,

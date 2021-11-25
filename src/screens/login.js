@@ -35,7 +35,7 @@ class Login extends Component{
                         <Text style={styles.textButton}>I N G R E S A R</Text>    
                     </TouchableOpacity>
                 </LinearGradient>
-                <Text>{this.props.error}</Text>
+                <Text style={styles.error}>{this.props.error}</Text>
                 
             </View>
         )
@@ -82,6 +82,11 @@ const styles = StyleSheet.create({
         fontWeight: 'thin',
         color:'white',
         fontSize: 25,
+        marginTop:5,
+    },
+    error:{
+        color:'red',
+        fontSize: 20,
         marginTop:5,
     }
 })
