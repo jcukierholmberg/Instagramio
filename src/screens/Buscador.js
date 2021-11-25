@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Text, TouchableOpacity, View, StyleSheet, Image, ActivityIndicator, FlatList, TextInput} from 'react-native';
-import { db, auth } from '../firebase/config';
+import {Text, TouchableOpacity, View, StyleSheet, FlatList, TextInput} from 'react-native';
+import { db } from '../firebase/config';
 import Post from '../components/Post';
 import {FontAwesomeIcon, fontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch } from "@fortawesome/free-solid-svg-icons"
@@ -12,12 +12,11 @@ class Buscador extends Component{
     this.state ={
       posteos: [],
       resultadoBusqueda: '',
-      aviso: 'Filtra los posteos por usuario'
     }
   }
 
   filtro (){
-    db.collection('posts').orderBy("createdAt", "desc").where("owner","==",this.state.resultadoBusqueda).onSnapshot( //podemos usar onSnapshot o el metodo GET - usamos onSnapshot porque es mas rapido, con el GEt pendriamos que refrescar la pagina para qwue aparezca la info pero con onSnapshot aparece sola
+    db.collection('posts').orderBy("createdAt", "desc").where("owner","==",this.state.resultadoBusqueda).onSnapshot( 
         docs => {
           let posts = [];
           docs.forEach( doc => {
@@ -29,7 +28,6 @@ class Buscador extends Component{
   
           this.setState({
             posteos: posts,
-            aviso: ''
           })
   
         }
