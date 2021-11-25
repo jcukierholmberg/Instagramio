@@ -143,7 +143,7 @@ class Post extends Component{
                                 <FlatList
                                 data={this.props.postData.data.comments}
                                 initialNumToRender={this.props.postData.data.comments.length}
-                                keyExtractor={item => item.createdAt}
+                                keyExtractor={item => item.createdAt.toString()}
                                 renderItem = {({item}) => <Text><strong>{item.author}</strong> {item.comment}</Text> }
                                 /> :
                                 <Text>Aún no hay comentarios. Sé el primero en opinar.</Text>

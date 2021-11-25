@@ -57,24 +57,24 @@ class Profile extends Component{
   })
 }
 
-createTwoButtonAlert(){
-    Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
-      [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => console.log("OK Pressed") }
-      ]
-    )}
+// createTwoButtonAlert(){
+//     Alert.alert(
+//       "Alert Title",
+//       "My Alert Msg",
+//       [
+//         {
+//           text: "Cancel",
+//           onPress: () => console.log("Cancel Pressed"),
+//           style: "cancel"
+//         },
+//         { text: "OK", onPress: () => console.log("OK Pressed") }
+//       ]
+//     )}
 
   render(){
     return(
       <View style={styles.container}>
-          <Text style={styles.welcome}>B I E N V E N I D O !  {this.props.userData.username}</Text>
+          <Text style={styles.welcome}>B I E N V E N I D O ! </Text>
           <Text style={styles.mail}>{this.props.userData.email}</Text>
           <Text style={styles.element}>{this.state.posteos.length} posteos</Text>
           <Text style={styles.element}> En Instagramio desde: {this.props.userData.metadata.creationTime}</Text>
